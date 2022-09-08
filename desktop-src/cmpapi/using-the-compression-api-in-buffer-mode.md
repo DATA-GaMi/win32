@@ -14,12 +14,13 @@ Buffer mode is recommended for most cases. For more information about how to use
 
 Applications using buffer or block mode have the option to specify a custom memory allocation routine when calling [**CreateCompressor**](/windows/desktop/api/compressapi/nf-compressapi-createcompressor) or [**CreateDecompressor**](/windows/desktop/api/compressapi/nf-compressapi-createdecompressor). See the [Using the Compression API in block mode](using-the-compression-api-in-block-mode.md) section for an example of a simple customized allocation routine.
 
-**Windows 8 and Windows Server 2012:** To use the following example code, you must be running Windows 8 or Windows Server 2012 and have "compressapi.h" and "cabinet.dll" and link to the "Cabinet.lib".
+**Windows 8 and Windows Server 2012:** To use the following example code, you must be running Windows 8 or Windows Server 2012 and have "compressapi.h" and "cabinet.dll" and link to the **"Cabinet.lib"**.
 
 The following code snippet demonstrates file compression with the XPRESS compression algorithm and Huffman encoding using the Compression API in buffer mode. The application accepts a file, compresses its contents and generates a compressed file. First the application calls [**CreateCompressor**](/windows/desktop/api/compressapi/nf-compressapi-createcompressor) with **COMPRESS\_ALGORITHM\_XPRESS\_HUFF** to generate a compressor. Then it calls [**Compress**](/windows/desktop/api/compressapi/nf-compressapi-compress), with *CompressedBufferSize* set to 0, to query for the required size of the compressed buffer. It allocates an output buffer to the *CompressedBufferSize* value. The application calls **Compress** a second time to perform the actual compression. Finally, the application writes the compressed data to the output file.
 
 
 ```C++
+#pragma comment(lib,"cabinet.lib")
 #include <Windows.h>
 #include <stdio.h>
 #include <compressapi.h>
