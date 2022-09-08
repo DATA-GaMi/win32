@@ -16,7 +16,7 @@ The buffer mode is recommended in most cases because it automatically splits up 
 
 Applications using buffer or block mode have the option to specify a custom memory allocation routine in its call to [**CreateCompressor**](/windows/desktop/api/compressapi/nf-compressapi-createcompressor) or [**CreateDecompressor**](/windows/desktop/api/compressapi/nf-compressapi-createdecompressor).
 
-**Windows 8 and Windows Server 2012:** To use the following example code, you must be running Windows 8 or Windows Server 2012 and have "compressapi.h" and "cabinet.dll" and link to the "Cabinet.lib".
+**Windows 8 and Windows Server 2012:** To use the following example code, you must be running Windows 8 or Windows Server 2012 and have "compressapi.h" and "cabinet.dll" and link to the **"Cabinet.lib"**.
 
 The following demonstrates using the Compression API in block mode to compress a file using the LZMS compression algorithm and a customized memory allocation routine. Your application must include the **COMPRESS\_RAW** flag to use the Compression API in block mode. First the application calls [**CreateCompressor**](/windows/desktop/api/compressapi/nf-compressapi-createcompressor) with **COMPRESS\_ALGORITHM\_LZMS**\|**COMPRESS\_RAW** to generate the compressor. The *AllocationRoutines* parameter specifies the memory allocation routine. The application then sets the block size for the compressor using [**SetCompressorInformation**](/windows/desktop/api/compressapi/nf-compressapi-setcompressorinformation).
 
@@ -24,6 +24,7 @@ The application makes repeated calls to [**Compress**](/windows/desktop/api/comp
 
 
 ```C++
+#pragma comment(lib,"cabinet.lib")
 #include <Windows.h>
 #include <stdio.h>
 #include <compressapi.h>
